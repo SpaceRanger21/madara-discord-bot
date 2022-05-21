@@ -41,6 +41,7 @@
 import discord
 from discord.ext import commands
 from random import choice
+from decouple import config
 import time
 import datetime
 
@@ -283,7 +284,7 @@ async def on_ready():
 	# DiscordComponents(bot)
 
 
-bot.run('TOKEN')
+bot.run('BOT_TOKEN')
 
 # -------------------------
 #     © SpaceRanger21
