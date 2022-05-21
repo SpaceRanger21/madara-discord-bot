@@ -1,7 +1,7 @@
 # -------------------------------------------MADARA-------------------------------------------
 # Madara#8657 - A general purpose bot written entirely in Python using discord.py
 # Made for Uchiha's Pride discord server [https://discord.com/invite/7rNeQem4kC]
-# License - [insert license link here]
+# License - [https://github.com/SpaceRanger21/madara-discord-bot/blob/master/LICENSE]
 # Made by SpaceRanger21#7533 @Discord
 # ------------------------------------------COPYRIGHT-----------------------------------------
 #                                        © SpaceRanger2
