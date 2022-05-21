@@ -284,7 +284,7 @@ async def on_ready():
 	# DiscordComponents(bot)
 
 
-bot.run('BOT_TOKEN')
+bot.run(config('BOT_TOKEN'))
 
 # -------------------------
 #     © SpaceRanger21
