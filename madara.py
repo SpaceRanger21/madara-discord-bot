@@ -2,13 +2,14 @@
 # Madara#8657 - A general purpose bot written entirely in Python using discord.py
 # Made for Uchiha's Pride discord server [https://discord.com/invite/7rNeQem4kC]
 # License - [https://github.com/SpaceRanger21/madara-discord-bot/blob/master/LICENSE]
+# Github Repo - [https://github.com/SpaceRanger21/madara-discord-bot]
 # Made by SpaceRanger21#7533 @Discord
 # ------------------------------------------COPYRIGHT-----------------------------------------
 #                                        © SpaceRanger2
 #
 # Discord : SpaceRanger21#7533  [I don't think discord has user links ¯\_(ツ)_/¯]
 # GitHub  : SpaceRanger21       [https://github.com/SpaceRanger21]
-# Reddit  : SpaceRanger21       [https://www.reddit.com/user/SpaceRanger21]
+# Reddit  : u/SpaceRanger21     [https://www.reddit.com/user/SpaceRanger21]
 # ============================================================================================
 #                             ------------------
 #                            | LIST OF COMMANDS |
@@ -63,7 +64,7 @@ async def on_message_delete(message):
 	ts = time.time()
 	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
 	embed = discord.Embed(title = "has deleted a message", description=f"{message.content}", color=discord.Color.random()).add_field(name="Time & Date", value=f"{st}").set_author(name=message.author)
-	channel = bot.get_channel(977287324591345754) #Uchiha's pride: 977299094722719776
+	channel = bot.get_channel(977299094722719776) #Uchiha's pride: 977299094722719776, Test Server: 977287324591345754
 	await channel.send(embed = embed)
 
 #---Logs Edited Messages---
@@ -72,9 +73,10 @@ async def on_message_edit(message_before, message_after):
 	ts = time.time()
 	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
 	embed = discord.Embed(title="Has edited a message", color = discord.Color.random()).add_field(name="Message before", value=f"{message_before.content}", inline=False).add_field(name="Message after", value=f"{message_after.content}", inline=False).add_field(name="Time & Date",value=f"{st}",inline=False).set_author(name=message_before.author)
-	channel = bot.get_channel(977292597573857321) #Uchiha's pride: 977299231004061756
+	channel = bot.get_channel(977299231004061756) #Uchiha's pride: 977299231004061756, Test Server: 977292597573857321
 	await channel.send(embed=embed)
 
+#---All Message Logger---
 # @bot.event
 # async def on_message(message: str):
 #     ts = time.time()
@@ -86,16 +88,16 @@ async def on_message_edit(message_before, message_after):
 
 @bot.event
 async def on_member_join(member):
-	#rules   channel @ Uchiha's pride: 818447224556093461
-	#bots    channel @ Uchiha's pride: 818548614409879563
-	#general channel @ Uchiha's pride: 818399268955226145
-	welcome_embed = discord.Embed(title="Welcome to the server!", description=f"{member.mention} Hope you have a great time here!", color = discord.Color.from_rgb(52, 152, 219)).add_field(name="Read the rules!", value="in <#764528019627966495>").add_field(name="Check out the bots!", value="Use commands in <#776021863188660245>").add_field(name="Say Hi", value="Send your first message in <#764525792972898354>").set_thumbnail(url=member.avatar_url) 
-	welcome_channel = bot.get_channel(781924697116770344) #Uchiha's pride: 818447187125469184
+	#rules   channel @ Uchiha's pride: #818447224556093461, Test Server: #764528019627966495
+	#bots    channel @ Uchiha's pride: #818548614409879563, Test Server: #776021863188660245
+	#general channel @ Uchiha's pride: #818399268955226145, Test Server: #764525792972898354
+	welcome_embed = discord.Embed(title="Welcome to the server!", description=f"{member.mention} Hope you have a great time here!", color = discord.Color.from_rgb(52, 152, 219)).add_field(name="Read the rules!", value="in <#818447224556093461>").add_field(name="Check out the bots!", value="Use commands in <#818548614409879563>").add_field(name="Say Hi", value="Send your first message in <#818399268955226145>").set_thumbnail(url=member.avatar_url) 
+	welcome_channel = bot.get_channel(818447187125469184) #Uchiha's pride: 818447187125469184, Test Server: 781924697116770344
 	await welcome_channel.send(embed= welcome_embed)
 
 @bot.event
 async def on_member_remove(member):
-	goodbye_channel = bot.get_channel(781924734824218644) #Uchiha's pride: 844187141596643369
+	goodbye_channel = bot.get_channel(844187141596643369) #Uchiha's pride: 844187141596643369, Teste Server: 781924734824218644
 	await goodbye_channel.send(f"**{member}** has just left the server, Hope they had a good time!")
 
 #add a role to a member on join
