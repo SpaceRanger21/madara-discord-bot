@@ -1,9 +1,9 @@
 # Madara - DiscordBot
 
 ### Table of Content
-1. [Description](description)
-1. [Dependencies](dependencies)
-1. [Commands]()
+1. [Description](#description)
+1. [Dependencies](#dependencies)
+1. [Commands](#commands)
 
 ## Description
 **Madara#8657** - A general purpose bot written entirely in Python using discord.py, made for [Uchiha's Pride discord server](https://discord.com/invite/7rNeQem4kC). **Prefix:** `>`
