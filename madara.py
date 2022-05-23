@@ -64,7 +64,7 @@ async def on_message_delete(message):
 	ts = time.time()
 	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
 	message_channel = bot.get_channel(message.channel.id) 
-	embed = discord.Embed(title = "has deleted a message", description=f"**in #{message_channel}**", color=discord.Color.random()).add_field(name="Time & Date", value=f"{st}").set_author(name=message.author)	
+	embed = discord.Embed(title = "has deleted a message", description=f"{message.content}\n**in #{message_channel}**",color=discord.Color.random()).add_field(name="Time & Date", value=f"{st}").set_author(name=message.author)	
 	channel = bot.get_channel(977299094722719776) #Uchiha's pride: 977299094722719776, Test Server: 977287324591345754
 	await channel.send(embed = embed)
 
