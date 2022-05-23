@@ -41,7 +41,6 @@
 import discord
 from discord.ext import commands
 from random import choice
-from decouple import config
 import time
 import datetime
 
@@ -64,18 +63,23 @@ rules_image4_url = "https://cdn.discordapp.com/attachments/900657033479598080/90
 async def on_message_delete(message):
 	ts = time.time()
 	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
-	embed = discord.Embed(title = "has deleted a message", description=f"{message.content}", color=discord.Color.random()).add_field(name="Time & Date", value=f"{st}").set_author(name=message.author)
+	message_channel = bot.get_channel(message.channel.id) 
+	embed = discord.Embed(title = "has deleted a message", description=f"**in #{message_channel}**", color=discord.Color.random()).add_field(name="Time & Date", value=f"{st}").set_author(name=message.author)	
 	channel = bot.get_channel(977299094722719776) #Uchiha's pride: 977299094722719776, Test Server: 977287324591345754
 	await channel.send(embed = embed)
 
 #---Logs Edited Messages---
 @bot.event
 async def on_message_edit(message_before, message_after):
-	ts = time.time()
-	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
-	embed = discord.Embed(title="Has edited a message", color = discord.Color.random()).add_field(name="Message before", value=f"{message_before.content}", inline=False).add_field(name="Message after", value=f"{message_after.content}", inline=False).add_field(name="Time & Date",value=f"{st}",inline=False).set_author(name=message_before.author)
-	channel = bot.get_channel(977299231004061756) #Uchiha's pride: 977299231004061756, Test Server: 977292597573857321
-	await channel.send(embed=embed)
+	if message_before.author == "Dank Memer#5192":
+		pass
+	else:
+		ts = time.time()
+		st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y at %H:%M:%S')
+		message_channel = bot.get_channel(message_before.channel.id)
+		embed = discord.Embed(title="Has edited a message", color = discord.Color.random(), description=f"**in #{message_channel}**").add_field(name="Message before", value=f"{message_before.content}", inline=False).add_field(name="Message after", value=f"{message_after.content}", inline=False).add_field(name="Time & Date",value=f"{st}",inline=False).set_author(name=message_before.author)
+		channel = bot.get_channel(977299231004061756) #Uchiha's pride: 977299231004061756, Test Server: 977292597573857321
+		await channel.send(embed=embed)
 
 #---All Message Logger---
 # @bot.event
@@ -99,7 +103,7 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
 	goodbye_channel = bot.get_channel(844187141596643369) #Uchiha's pride: 844187141596643369, Teste Server: 781924734824218644
-	await goodbye_channel.send(f"**{member}** has just left the server, Hope they had a good time!")
+	await goodbye_channel.send(f"**{member}** has just left the server, was a bitch anyways.")
 
 #add a role to a member on join
 # @bot.event
@@ -156,7 +160,7 @@ async def die(ctx):
     'I am far too young to die!',
     'Jokes on you I can\'t be killed!',
     'HOW CAN YOU DO THIS TO ME??! ***Dies***']
-    
+
     await ctx.send(choice(responses))
 
 #---Divide command---
@@ -174,7 +178,7 @@ async def hi(ctx, member : discord.Member = None):
 	'Hi',
 	'Wasssuup!'
 	]
-		
+
 	if member:
 		responses_tag = [
 		f'Hi {member.mention}',
@@ -185,7 +189,7 @@ async def hi(ctx, member : discord.Member = None):
 		await ctx.send(choice(responses_tag))
 	else:
 		await ctx.send(choice(responses))
-		
+
 
 #---Kill command---
 @bot.command(help= ' - Kill your friends with this command!')
@@ -194,7 +198,7 @@ async def kill(ctx, member : discord.Member = None):
 		f"**{ctx.author}** has yeeted **{member}**",
 		f"**{ctx.author}** loaded a shotgun and shot **{member}** in the head, killing them instantlly."
 	]
-	
+
 	if member:
 		await ctx.send(choice(kill_ways))
 	else:
@@ -223,7 +227,7 @@ async def mckill(ctx, member : discord.Member):
 		await ctx.send(choice(mcdeath))
 	else:
 		await ctx.send("Who to kill? Please mention someone.")
-	
+
 
 #---Multiply Command---
 @bot.command(aliases = ["mul"],help=" - multiply two, three, or four numbers.")
@@ -260,7 +264,7 @@ async def subtract(ctx, num1:int, num2:int):
 #---Truth Command---
 @bot.command(help=" - This command tell you the truth")
 async def truth(ctx):
-	await ctx.reply("arnaB is dum dum AND a cheater <a:name:903915089139236895>")
+	await ctx.reply("Uchiha's Pride is the best server!! <a:name:903915089139236895>")
 
 #---Who Is command---
 @bot.command(help=' - This command shows information of a specific member')
@@ -284,7 +288,7 @@ async def on_ready():
 	# DiscordComponents(bot)
 
 
-bot.run(config('BOT_TOKEN'))
+bot.run('TOKEN')
 
 # -------------------------
 #     © SpaceRanger21
