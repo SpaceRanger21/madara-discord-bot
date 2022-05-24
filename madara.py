@@ -29,8 +29,10 @@
 # | kill         | Kill your friends with this command!                    |
 # | mckill       | Kill your friends in Minecraft!                         |
 # | multiply     | Multiply two, three, or four numbers.                   |
-# | ping         | his command shows the latency of the bot                |
+# | ping         | This command shows the latency of the bot               |
+# | role         | Give roles to users (admin only)                        |
 # | rules        | This command shows the Rules                            |
+# | selfrole     | Use this command to give yourself a role                |
 # | substract    | Subtract two numbers                                    |
 # | truth        | This command tell you the truth                         |
 # | whois        | This command shows information of a specific member     |
@@ -108,13 +110,13 @@ async def on_member_remove(member):
 #add a role to a member on join
 # @bot.event
 # async def on_member_join(member):
-# 	Testers_role = discord.utils.get(member.guild.roles, name="Testers") 
-# 	await member.add_roles(Testers_role)
+# 	uchiha_role = discord.utils.get(member.guild.roles, name="Uchiha") 
+# 	await member.add_roles(uchiha_role)
 
 #-----------------------commands-----------------------#
 
 #---Add command---
-@bot.command(help=" - add two, three, or four numbers.")
+@bot.command(help=" - Add two, three, or four numbers.")
 async def add(ctx, num1:int, num2:int, num3:int = None, num4:int = None):
 	if num4:
 		await ctx.reply(num1+num2+num3+num4)
@@ -124,7 +126,7 @@ async def add(ctx, num1:int, num2:int, num3:int = None, num4:int = None):
 		await ctx.reply(num1+num2)
 
 #---Botstop command---
-@bot.command(aliases=['bstop', 'bs'], help=' - Stop the bot with this command (plot twist, you can\'t)')
+@bot.command(aliases=['bstop', 'bs'], help=' - Stops the bot (plot twist, you can\'t)')
 @commands.is_owner()
 async def botstop(ctx):
 	await ctx.send('Goodbye')
@@ -164,7 +166,7 @@ async def die(ctx):
     await ctx.send(choice(responses))
 
 #---Divide command---
-@bot.command(aliases=['div'], help=" = Divide two numbers")
+@bot.command(aliases=['div'], help=" - Divide two numbers")
 async def divide(ctx, num1:int, num2:int):
 	await ctx.reply(num1/num2)
 
@@ -230,7 +232,7 @@ async def mckill(ctx, member : discord.Member):
 
 
 #---Multiply Command---
-@bot.command(aliases = ["mul"],help=" - multiply two, three, or four numbers.")
+@bot.command(aliases = ["mul"],help=" - Multiply two, three, or four numbers.")
 async def multiply(ctx, num1:int, num2:int, num3:int = None, num4:int = None):
 	if num4:
 		await ctx.reply(num1*num2*num3*num4)
@@ -244,6 +246,22 @@ async def multiply(ctx, num1:int, num2:int, num3:int = None, num4:int = None):
 async def ping(ctx):
 	await ctx.send(f'**Pong!** Latency: {round(bot.latency * 1000)}ms')
 
+#---Roles command---
+@bot.command(help=" - Give roles to users (admin only)")
+@commands.has_permissions(administrator=True)
+async def role(ctx, role: discord.Role, member: discord.Member = None):
+	if member:
+		if role.position > ctx.author.top_role.position:
+			return await ctx.send('**:x: | That role is above your top role!**')
+		if role in member.roles:
+			await member.remove_roles(role)
+			await ctx.send(f"Removed role: **{role}** from **{member}**")
+		else:
+			await member.add_roles(role)
+			await ctx.send(f"Added role: **{role}** to **{member}**")
+	else:
+		await ctx.send("Please mention a user!")
+
 #---Rules command---
 @bot.command(name="rules", aliases=['rule'], help=" - This command shows the Rules")
 async def rules(ctx):
@@ -255,6 +273,24 @@ async def rules(ctx):
 	await ctx.send(embed = rules_embed2)
 	await ctx.send(embed = rules_embed3)
 	await ctx.send(embed = rules_embed4)
+
+#---Selfrole Command---
+@bot.command(help=" - Use this command to give yourself a role")
+async def selfrole(ctx, *,role: discord.Role = None):
+	available_roles = ["Demon Slayers", "Konoha RPG", "Naruto Game","Poketwo"]
+	if role:
+		if str(role) in available_roles:
+			if role in ctx.author.roles:
+				await ctx.author.remove_roles(role)
+				await ctx.send(f"Removed role: **{role}** from **{ctx.author}**")
+			else:
+				await ctx.author.add_roles(role)
+				await ctx.send(f"Added role: **{role}** to **{ctx.author}**")
+		else:
+			await ctx.send("**You can't have that role**, choose only from the given list\n`>selfrole` for a list of available roles")
+	else:
+		selfroles_embed = discord.Embed(title="Available Self Roles:", description="Demon Slayers\nKonoha RPG\nPoketwo\nNaruto Game", color=discord.Color.from_rgb(255, 11, 46)).add_field(name="Choose a role", value="`>selfrole <role name>`")
+		await ctx.send(embed=selfroles_embed)
 
 #---Subtract command---
 @bot.command(aliases=['sub'], help=" - Subtract two numbers")
@@ -284,8 +320,10 @@ async def whois(ctx, member : discord.Member):
 
 @bot.event
 async def on_ready():
+	ts = time.time()
+	st = datetime.datetime.fromtimestamp(ts).strftime('%d-%m-%Y - %H:%M:%S')
 	print('Bot is ready!'.format(bot))
-	# DiscordComponents(bot)
+	print(f'at {st}')
 
 
 bot.run('TOKEN')

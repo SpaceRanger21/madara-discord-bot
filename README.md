@@ -30,7 +30,7 @@
 | Command Name | Command Description                                     |
 |--------------|---------------------------------------------------------|
 | add          | Add two, three, or four numbers.                        |
-| botstop      | Stop the bot with this command (plot twist, you can't)  |
+| botstop      | Stop the bot with this command (admin only)  |
 | cointoss     | Toss a coin (to the witcher?)                           |
 | credits      | This command shows the maker of the bot                 |
 | dice         | Roll a dice and get a random number between 1 and 6!    |
@@ -42,7 +42,9 @@
 | mckill       | Kill your friends in Minecraft!                         |
 | multiply     | Multiply two, three, or four numbers.                   |
 | ping         | his command shows the latency of the bot                |
+| role         | Give roles to users (admin only)
 | rules        | This command shows the Rules                            |
+| selfrole     | Use this command to give yourself a role
 | substract    | Subtract two numbers                                    |
 | truth        | This command tell you the truth                         |
 | whois        | This command shows information of a specific member     |
