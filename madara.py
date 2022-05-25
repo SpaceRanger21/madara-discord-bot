@@ -101,17 +101,14 @@ async def on_member_join(member):
 	welcome_embed = discord.Embed(title="Welcome to the server!", description=f"{member.mention} Hope you have a great time here!", color = discord.Color.from_rgb(52, 152, 219)).add_field(name="Read the rules!", value="in <#818447224556093461>").add_field(name="Check out the bots!", value="Use commands in <#818548614409879563>").add_field(name="Say Hi", value="Send your first message in <#818399268955226145>").set_thumbnail(url=member.avatar_url) 
 	welcome_channel = bot.get_channel(818447187125469184) #Uchiha's pride: 818447187125469184, Test Server: 781924697116770344
 	await welcome_channel.send(embed= welcome_embed)
+	uchiha_role = discord.utils.get(member.guild.roles, name="Uchiha") 
+	await member.add_roles(uchiha_role)
 
 @bot.event
 async def on_member_remove(member):
 	goodbye_channel = bot.get_channel(844187141596643369) #Uchiha's pride: 844187141596643369, Teste Server: 781924734824218644
 	await goodbye_channel.send(f"**{member}** has just left the server, was a bitch anyways.")
 
-#add a role to a member on join
-# @bot.event
-# async def on_member_join(member):
-# 	uchiha_role = discord.utils.get(member.guild.roles, name="Uchiha") 
-# 	await member.add_roles(uchiha_role)
 
 #-----------------------commands-----------------------#
 
